@@ -1,0 +1,67 @@
+.judul{
+    position: absolute;
+    font-family: Arial;
+    font-size: 30px;
+    font-weight: 700;
+    color: #00B3CA;
+    margin-top: 32px;
+    margin-left: 155px;
+}
+.jdl{
+    text-align: center;
+}
+.btn_input{
+    width: 85px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background-color: #00B3CA;
+    color: #fff;
+    margin-left: 85.6%;
+    margin-top: 20px;
+}
+.btn_input:hover{
+    border: none;
+    background-color: #1b9bff;
+}
+
+/* table */
+.tab{
+    margin-top: 100px;
+    width: 80%;
+    margin-left: 10%;
+}
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    font-family: Arial;
+  }
+
+  
+
+@media (max-width: 1076px){
+    .judul{
+        margin-left: -90px;
+        margin-top: 30px;
+    }
+    .btn_input{
+        width: 85px;
+        height: 40px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: none;
+        background-color: #00B3CA;
+        color: #fff;
+        margin-left: 78.5%;
+        margin-top: 20px;
+    }
+    
+    /* table */
+    .tab{
+        margin-top: 100px;
+        width: 80%;
+        margin-left: 7%;
+    }
+}
