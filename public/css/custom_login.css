@@ -22,7 +22,8 @@ body{
     background:#e6e8e6;
     opacity: 99%;
     max-width: 340px;
-    height: 380px;
+    min-height: 380px;
+    max-height: 680px;
     margin: 200px auto 100px;
     padding: 10px 45px 30px 45px;
     text-align: center;

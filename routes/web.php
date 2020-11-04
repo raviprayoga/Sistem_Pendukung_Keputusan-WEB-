@@ -24,11 +24,15 @@ Route::get('/Login',[
     'uses' => 'UserController@getLogin',
     'as'  => 'login'
 ]);
+Route::post('/loginPost', 'UserController@loginPost');
+
 // SignUp
 Route::get('/SignUp',[
     'uses' => 'UserController@getSignUp',
     'as'  => 'signup'
 ]);
+Route::post('/registerPost', 'UserController@registerPost');
+
 // About
 Route::get('/AboutUs',[
     'uses' => 'UserController@getAbout',
@@ -45,3 +49,18 @@ Route::get('/Metode_Perhitungan',[
     'as'   => 'metode'
 ]);
 
+
+// admin dashboard
+Route::get('/dashboard',[
+    'uses' => 'AdminController@getDashboard',
+    'as'   => 'dashboard'
+]);
+
+Route::get('/matakuliah_wajib',[
+    'uses' => 'AdminController@getMatkul_Wajib',
+    'as'   => 'matkul_wajib'
+]);
+Route::get('/matakuliah_pilihan',[
+    'uses' => 'AdminController@getMatkul_Pilihan',
+    'as'   => 'matkul_pilihan'
+]);

@@ -8,7 +8,7 @@
     position: absolute;
     width: 100%;
     background-size: cover;
-    min-height: 1000px;
+    min-height: 1120px;
 }
 
 .label{
@@ -207,3 +207,5 @@
         text-align: left;
     }
 }
+
+/* admin_dashboard CSS */

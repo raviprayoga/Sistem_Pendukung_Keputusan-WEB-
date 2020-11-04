@@ -11,10 +11,21 @@
     <div class="background1">
         <div class="form">
         <p class="paraf1">Login</p>
-        <form>
-            <input type="text" name="username" placeholder="username">
+        @if(\Session::has('alert'))
+                <div class="alert alert-danger">
+                    <div>{{Session::get('alert')}}</div>
+                </div>
+            @endif
+            @if(\Session::has('alert-success'))
+                <div class="alert alert-success">
+                    <div>{{Session::get('alert-success')}}</div>
+                </div>
+            @endif
+        <form action="/loginPost" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <input type="text" name="email" placeholder="email" id="email">
             <input type="password" name="password" placeholder="password">
-            <button>login</button>
+            <button type="submit">login</button>
             <p class="message">Not registered? <a href="{{route ('signup')}}">Create an account</a></p>
         </form>
         </div>
