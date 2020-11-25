@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\ModelUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -14,34 +16,33 @@ class UserController extends Controller
         return view('Auth.login');
     }
     public function loginPost(Request $request){
-
         $email = $request->email;
         $password = $request->password;
-
         $data = ModelUser::where('email',$email)->first();
         if($data){ //apakah email tersebut ada atau tidak
             if(Hash::check($password,$data->password)){
-                Session::put('nama',$data->nama);
-                Session::put('email',$data->email);
-                Session::put('login',TRUE);
-                return redirect('');
+                session(['berhasil_login' => true]);
+                return redirect('/home')->with('alert', 'Berhasil Login');
             }
             else{
-                return redirect('Login')->with('alert','Password atau Email, Salah !');
+                return redirect('/')->with('alert','Password atau Email, Salah !');
             }
         }
         else{
-            return redirect('Login')->with('alert','Password atau Email, Salah!');
+            return redirect('/')->with('alert','Password atau Email, Salah!');
         }
     }
 
-
+    // logout
+    public function Logout( Request $request){
+       $request->session()->flush();
+        return redirect('/');
+    }
     // SignUp
     public function getSignUp( Request $request){
         $regis = ModelUser::get();
         return view('Auth.regis');
     }
-
     public function registerPost(Request $request){
         $this->validate($request, [
             'nama' => 'required|min:4',
@@ -56,13 +57,13 @@ class UserController extends Controller
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->save();
-        return redirect('Login')->with('alert-success','Kamu berhasil Register');
+        return redirect('/')->with('alert-success','Kamu berhasil Register');
     }
-
 
     // Home
     public function getHome(){
-        return view('Home.Landing');
+        $user = DB::table('user')->get();
+        return view('Home.Landing',  ['user' => $user]);
     }
     // About
     public function getAbout(){
@@ -70,9 +71,10 @@ class UserController extends Controller
     }
     //input_nilai
     public function getInput(){
-        return view('Form.input_nilai_user');
+        $matkul = DB::table('matkul_wajib')->get();
+        return view('Form.input_nilai_user', ['matkul_wajib' => $matkul]);
     }
-    // metode\
+    // metode
     public function getMetode(){
         return view('Home.Metode');
     }

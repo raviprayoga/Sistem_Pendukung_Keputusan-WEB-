@@ -31,15 +31,44 @@
         <td>{{ $item->sks }}</td>
         <td>{{ $item->semester }}</td>
         <td>
-            <button class="icon_aksi1"><i class="fas fa-edit fa-3x"></i></button>
-            <button class="icon_aksi2"><i class="fas fa-trash-alt fa-3x"></i></button>
+            <button  data-toggle="modal" data-target="#editModal" class="icon_aksi1"
+              data-mynama="{{$item->nama_matkul_wajib}}" data-mykode="{{$item->kode_mk}}" data-mysks="{{$item->sks}}"  data-mysemester="{{$item->semester}}" data-id="{{$item->id}}" ><i class="fas fa-edit fa-3x"></i></button>
+            <button onclick="window.location.href='/upload_matkul_wajib/hapus_matkul_wajib/{{ $item->id }}';" class="icon_aksi2" ><i class="fas fa-trash-alt fa-3x"></i></button>
         </td>
     </tr>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Matakuliah</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/upload_matkul_wajib/update_matkul_wajib/{{$item->id}}';" method="POST" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          <input type="hidden" name="id" id="id" value=" ">
+          <input class="modal_body" name="kode_mk" type="text" id="kode_mk"> 
+          <input class="modal_body" name="nama_matkul_wajib" type="text" id="nama_matkul_wajib"> 
+          <input class="modal_body" name="sks" type="text" id="sks"> 
+          <input class="modal_body" name="semester" type="text" id="semester"> 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button  type="submit" value="Simpan Data" class="btn btn-primary">Save changes</button>
+          </div>
+       </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+{{--  {{ $matkul_wajib->links() }}  --}}
     @endforeach
-</table>
-
-
-<!-- Modal -->
+    
+<!-- Modal Add -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -50,14 +79,42 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <form action="/upload_matkul_wajib/proses_upload_matkul_wajib" method="POST" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          <input class="modal_body" name="kode_mk" type="text" placeholder="Kode Matakuliah"> 
+          <input class="modal_body" name="nama_matkul_wajib" type="text" placeholder="Nama Matakuliah"> 
+          <input class="modal_body" name="sks" type="text" placeholder="SKS"> 
+          <input class="modal_body" name="semester" type="text" placeholder="Semester"> 
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" value="Upload" class="btn btn-primary">Save changes</button>
+          </div>
+       </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+     
     </div>
   </div>
 </div>
+  </table>
+ 
 
+<script>
+  $('#editModal').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget)
+    var kode_mk = button.data('mykode')
+    var nama_matkul_wajib = button.data('mynama')
+    var sks = button.data('mysks')
+    var semester = button.data('mysemester')
+    var id = button.data('id')
+  
+    var modal =$(this)
+    modal.find('.modal-body #kode_mk').val(kode_mk);
+    modal.find('.modal-body #nama_matkul_wajib').val(nama_matkul_wajib);
+    modal.find('.modal-body #sks').val(sks);
+    modal.find('.modal-body #semester').val(semester);
+    modal.find('.modal-body #id').val(id);
+  })
+  
+  </script>
 @stop

@@ -2,22 +2,138 @@
 
 namespace App\Http\Controllers;
 
+use App\Model_matkul_wajib;
+use App\Model_matkul_pilihan;
+use App\ModelUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class AdminController extends Controller
 {
      // dashboard
      public function getDashboard(){
-        
         $users = DB::table('user')->get();
         return view('admin.admin_view.dashboard', ['users' => $users]);
     }
+
+    public function edit(){
+        return view('admin.admin_view.edituser');
+    }
+
+        // hapus data
+        public function hapus_user($id){
+                ModelUser::where('id',$id)->delete();
+                return redirect()->back();
+        }
+
+        public function edit_user($id){
+            // mengambil data berdasarkan id yang dipilih
+            $user = ModelUser::find($id)->first();
+            // passing data user yang didapat ke view 
+            return view('admin.admin_view.dashboard',['user' => $user]);
+        }
+        // update data matkul
+        public function update_user(Request $request)
+        {
+            $user = ModelUser::findOrFail($request->id);
+            $user->update($request->all());
+            return back();
+        }
+
+    // matkul wajib
+    // tampilkan data from database matkul_wajib
     public function getMatkul_Wajib(){
         $matkul = DB::table('matkul_wajib')->get();
         return view('admin.admin_view.matkul_wajib', ['matkul_wajib' => $matkul]);
     }
+            // upload matkul
+            public function uploadMatkulWajib(){
+                $matkul = Model_matkul_wajib::get();
+                return view('admin.admin_view.matkul_wajib',['matkul_wajib' => $matkul]);
+            }
+            public function proses_upload_matkul_wajib(Request $request){
+                $this->validate($request, [
+                    'nama_matkul_wajib' => 'required',
+                    'kode_mk' => 'required',
+                    'sks' => 'required',
+                    'semester' => 'required',
+                    
+                ]);
+                
+                Model_matkul_wajib::create([
+                    'nama_matkul_wajib' => $request->nama_matkul_wajib,
+                    'kode_mk' => $request->kode_mk,
+                    'sks' => $request->sks,
+                    'semester' =>$request->semester,
+                ]);
+                return redirect()->back();
+            }
+            // hapus data
+            public function hapus_matkul_wajib($id){
+                    Model_matkul_wajib::where('id',$id)->delete();
+                    return redirect()->back();
+            }
+            
+            public function edit_matkul_wajib($id){
+                // mengambil data berdasarkan id yang dipilih
+                $matkul = Model_matkul_wajib::find($id);
+                // passing data matkul yang didapat ke view 
+                return view('admin.admin_view.matkul_wajib',['matkul_wajib' => $matkul]);
+            }
+            // update data matkul
+            public function update_matkul_wajib(Request $request)
+            {
+                $matkul = Model_matkul_wajib::findOrFail($request->id);
+                $matkul->update($request->all());
+                return back();
+            }
+
+
+    // matkul pilihan
     public function getMatkul_Pilihan(){
-        return view('admin.admin_view.dashboard');
+        $matkul = DB::table('matkul_pilihan')->get();
+        return view('admin.admin_view.matkul_pilihan', ['matkul_pilihan' => $matkul]);
+    }
+    // upload matkul
+    public function uploadMatkulpilihan(){
+        $matkul = Model_matkul_pilihan::get();
+        return view('admin.admin_view.matkul_pilihan',['matkul_pilihan' => $matkul]);
+    }
+    public function proses_upload_matkul_pilihan(Request $request){
+        $this->validate($request, [
+            'nama_matkul_pilihan' => 'required',
+            'kode_mk' => 'required',
+            'sks' => 'required',
+            'semester' => 'required',
+            
+        ]);
+        
+        Model_matkul_pilihan::create([
+            'nama_matkul_pilihan' => $request->nama_matkul_pilihan,
+            'kode_mk' => $request->kode_mk,
+            'sks' => $request->sks,
+            'semester' =>$request->semester,
+        ]);
+        return redirect()->back();
+    }
+    // hapus data
+    public function hapus_matkul_pilihan($id){
+            Model_matkul_pilihan::where('id',$id)->delete();
+            return redirect()->back();
+    }
+    
+    public function edit_matkul_pilihan($id){
+        // mengambil data berdasarkan id yang dipilih
+        $matkul = Model_matkul_pilihan::find($id);
+        // passing data matkul yang didapat ke view 
+        return view('admin.admin_view.matkul_pilihan',['matkul_pilihan' => $matkul]);
+    }
+    // update data matkul
+    public function update_matkul_pilihan(Request $request)
+    {
+        $matkul = Model_matkul_pilihan::findOrFail($request->id);
+        $matkul->update($request->all());
+        return back();
     }
 }

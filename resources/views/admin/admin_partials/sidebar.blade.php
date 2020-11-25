@@ -11,20 +11,20 @@
 	        	
 	        	<ul>
 		          <li>
-		            <a href="{{route('dashboard')}}">
+		            <a href="/dashboard">
 		              <span class="icon">
 		              	<i class="fas fa-border-all"></i></span>
 		              <span class="list">User</span>
 		            </a>
 		          </li>
 		          <li>
-		            <a href="{{route('matkul_wajib')}}" class="icon">
+		            <a href="/matakuliah_wajib" class="icon">
 		              <span class="icon"><i class="fas fa-chart-pie"></i></span>
 		              <span class="list">Matakuliah Wajib</span>
 		            </a>
 		          </li>
 		          <li>
-		            <a href="{{route('matkul_pilihan')}}">
+		            <a href="/matakuliah_pilihan">
 		              <span class="icon"><i class="fas fa-address-book"></i></span>
 		              <span class="list">Matakuliah Pilihan</span>
 		            </a>

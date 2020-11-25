@@ -7,14 +7,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
+    
     <img class="back_home" src="{{asset('assets/images/back_home.jpg')}}" alt="">
     <div class="label">
+        @foreach($user as $item)
+        <p>{{ auth()->user('nama')}}</p>
+        @endforeach
         <p class="home">
             Selamat Datang di Situs Web <br>
             Sistem Pendukung Keputusan Pemilihan Matakuliah Pilihan <br>
             Teknik informatika ITERA
         </p>
-        <button type="button" onclick="window.location.href='{{route('input')}}';" class="btn_nilai">Input Nilai</button>
+        <button type="button" onclick="window.location.href='/Input_Nilai';" class="btn_nilai">Input Nilai</button>
     </div>
 </body>
 @stop
