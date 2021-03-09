@@ -20,8 +20,8 @@
   label.logo{
     color: white;
     font-size: 30px;
-    line-height: 70px;
-    padding-top: 3vw;
+    line-height:70px;
+    padding-top: 0;
     margin-left: 43px;
     font-weight: 400;
   }
@@ -37,11 +37,11 @@
   }
   nav ul{
     float: right;
-    margin-right: 20px;
+    margin-right: 30px;
   }
   nav ul li{
     display: inline-block;
-    line-height: 90px;
+    line-height:  20px;
     margin: 0 5px;
   }
   nav ul li a{
@@ -66,6 +66,61 @@
   }
   #check{
     display: none;
+  }
+  .dropdown1 {
+    float: left;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  
+  /* Dropdown button */
+  .dropdown1 .dropbtn1 {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    color: white;
+    padding:0px;
+    width: 40px;
+    z-index: 2;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+  
+  /* Add a red background color to navbar links on hover */
+  .nav a:hover, .dropdown1:hover .dropbtn1 {
+    background-color: #1b9bff;
+  }
+  
+  /* Dropdown content (hidden by default) */
+  .dropdown-content1 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content1 a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content1 a:hover {
+    background-color: #00b3ca;
+    color: #f9f9f9;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown1:hover .dropdown-content1 {
+    display: block;
   }
 
 

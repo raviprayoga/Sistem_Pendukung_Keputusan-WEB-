@@ -15,20 +15,18 @@ body{
   height: 100%;
 }
 .main_body .sidebar_menu{
-	position: fixed;
+	  position: absolute;
   	top: 0px;
   	left: 0;
-  	background: #011627;
-  	width: 250px;
-  	height: 100%;
+  	background: 	#4c5add;
+  	width: 15%;
+  	height: 200%;
   	transition: all 0.3s linear;
 }
-
 .main_body .sidebar_menu .inner__sidebar_menu{
 	position: relative;
-	padding-top: 60px;
+	padding-top: 100px;
 }
-
 .main_body .sidebar_menu ul li a{
   color: #fff;
   font-size: 18px;
@@ -36,21 +34,16 @@ body{
   display: block;
   white-space: nowrap;
 }
-
 .main_body .sidebar_menu ul li a .icon{
   margin-right: 8px;
 }
-
 .main_body .sidebar_menu ul li a span{
   display: inline-block;
 }
-
 .main_body .sidebar_menu ul li a:hover{
-  background: #3e3774;
-  color: #f72585;
+  background: #333333;
+  color: #ffd700;
 }
-
-
 .main_body .sidebar_menu .hamburger{
   position: absolute;
   top: 5px;
@@ -74,7 +67,7 @@ body{
   width: 40px;
   border-radius: 50%;
   height: 40px;
-  background: #011627;
+  background: #4c5add;
 }
 
 .main_body .sidebar_menu .hamburger .arrow{
@@ -82,7 +75,7 @@ body{
   font-size: 20px;
 }
 .main_body .sidebar_menu .hamburger .arrow:hover{
-  color: #f72585;
+  color: #ffd700;
   font-size: 20px;
 }
 
@@ -92,33 +85,15 @@ body{
 }
 
 .main_body .container{
-	width: calc(100% - 250px);
+	width: auto;
 	margin-top: 65px;
-	margin-left: 250px;
-	padding: 25px 40px;
+	margin-left: 15%;
 	transition: all 0.3s linear;
-}
-
-.main_body .container .item_wrap{
-	display: flex;
-	margin-bottom: 20px;
-}
-
-.main_body .container .item_wrap .item{
-	background: #fff;
-	border: 1px solid #e0e0e0;
-	padding: 25px;
-	font-size: 14px;
-	line-height: 22px;
-}
-
-.main_body .container .item_wrap .item:first-child{
-	margin-right: 20px;
 }
 
 /* after adding active class */
 .wrapper.active .sidebar_menu{
-  width: 100px;
+  width: 8%;
 }
 
 .wrapper.active .hamburger .fa-long-arrow-alt-right{
@@ -135,13 +110,13 @@ body{
 
 .wrapper.active .main_body .container{
   width: calc(100% - 100px);
-  margin-left: 100px;
+  margin-left: 180px;
 }
 
 
 /* tabel user */
 .user_tabel{
-  width: 170%;
+  width: 100%;
   margin-top: 20px;
 }
 .user_tabel th{
@@ -169,7 +144,7 @@ body{
   margin-left: 30px;
 }
 .icon_aksi2:hover{
-  color: #f72585;
+  color: #ff4040;
 }
 .icon_aksi1{
   width: 30px;
@@ -179,14 +154,14 @@ body{
   height: 30px;
 }
 .icon_aksi1:hover{
-  color: #f72585;
+  color: #ffd700;
 }
 .icon_add{
   border: none;
   color: #011627;
 }
 .icon_add:hover{
-  color: #f72585;
+  color: #1761a7;
 }
 
 /* modal */

@@ -5,7 +5,7 @@
     font-weight: 700;
     color: #00B3CA;
     margin-top: 32px;
-    margin-left: 155px;
+    margin-left: 25%;
 }
 .jdl{
     text-align: center;
@@ -16,9 +16,11 @@
     position: absolute;
     width: 100%;
     background-size: cover;
-    min-height: 1500px;
+    min-height: 1800px;
 }
 .btn_input{
+    position: absolute;
+    margin-top: 82%;
     width: 85px;
     height: 40px;
     font-size: 18px;
@@ -27,8 +29,6 @@
     background-color: #00B3CA;
     color: #fff;
     margin-left: 70%;
-    margin-bottom: 40px;
-    margin-top: 20px;
 }
 .btn_input:hover{
     border: none;

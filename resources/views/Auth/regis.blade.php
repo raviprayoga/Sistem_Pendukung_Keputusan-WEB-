@@ -26,12 +26,12 @@
             @endif
         <form action="/registerPost" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="text" name="nama" id="nama" placeholder="nama">
+            <input type="text" name="name" id="nama" placeholder="nama">
             <input type="text" name="nim" id="nim" placeholder="nim">
             <input type="email" name="email" id="email" placeholder="email">
             <input type="password" name="password" id="password" placeholder="password">
             <button type="submit">SignUp</button>
-            <p class="message">sudah memiliki akun? <a href="{{route('login')}}">kembali ke login</a></p>
+            <p class="message">sudah memiliki akun? <a href="/login">kembali ke login</a></p>
         </form>
         </div>
     </div>

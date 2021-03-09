@@ -5,32 +5,28 @@
 
 <div class="wrapper">
 	<div class="main_body">
-		
 		<div class="sidebar_menu">
 	        <div class="inner__sidebar_menu">
-	        	
 	        	<ul>
 		          <li>
 		            <a href="/dashboard">
-		              <span class="icon">
-		              	<i class="fas fa-border-all"></i></span>
-		              <span class="list">User</span>
+		              <span class="icon"><i class="fas fa-users"></i></span>
+		              <span class="list	">User</span>
 		            </a>
 		          </li>
 		          <li>
 		            <a href="/matakuliah_wajib" class="icon">
-		              <span class="icon"><i class="fas fa-chart-pie"></i></span>
+		              <span class="icon"><i class="fas fa-book"></i></span>
 		              <span class="list">Matakuliah Wajib</span>
 		            </a>
 		          </li>
 		          <li>
 		            <a href="/matakuliah_pilihan">
-		              <span class="icon"><i class="fas fa-address-book"></i></span>
+		              <span class="icon"><i class="fas fa-book"></i></span>
 		              <span class="list">Matakuliah Pilihan</span>
 		            </a>
 		          </li>
 		        </ul>
-
 		        <div class="hamburger">
 			        <div class="inner_hamburger">
 			            <span class="arrow">
@@ -39,10 +35,9 @@
 			            </span>
 			        </div>
 			    </div>
-
 	        </div>
 	    </div>
-
+		
 	    <div class="container">
 	    	@yield('admin_content')
 	    </div>

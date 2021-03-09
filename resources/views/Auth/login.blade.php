@@ -25,7 +25,7 @@
                     <div>{{Session::get('alert-success')}}</div>
                 </div>
             @endif
-        <form action="/loginPost" method="post" enctype="multipart/form-data">
+        <form action="/loginpost" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="text" name="email" placeholder="email" id="email">
             <input type="password" name="password" placeholder="password">
