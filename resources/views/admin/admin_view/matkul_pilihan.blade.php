@@ -23,12 +23,13 @@
     <thead>
       <tr>
         <th class="th-sm">No</th>
-        <th class="th-sm">Nama Matakuliah</th>
-        <th class="th-sm">Kode Mtakauliah</th>
-        <th class="th-sm">SKS</th>
-        <th class="th-sm">Semester</th>
-        <th class="th-sm">Silabus</th>
-        <th class="th-sm">Aksi</th>
+        <th style="text-align: center" class="th-sm">Nama Matakuliah</th>
+        <th style="text-align: center" class="th-sm">Kode Matakauliah</th>
+        <th style="text-align: center" class="th-sm">SKS</th>
+        <th style="text-align: center" class="th-sm">Semester</th>
+        <th style="text-align: center" class="th-sm">Silabus</th>
+        <th style="text-align: center" class="th-sm">Materi Pokok</th>
+        <th style="text-align: center" class="th-sm">Aksi</th>
       </tr>
     </thead>
     <tbody>
@@ -38,14 +39,15 @@
       @foreach($matkul_pilihan as $item)
       <tr>
         <td>{{ $no++ }}</td>
-          <td>{{ $item->nama_matkul_pilihan }}</td>
-          <td>{{ $item->kode_mk }}</td>
-          <td>{{ $item->sks }}</td>
-          <td>{{ $item->semester }}</td>
-          <td style="width: 40%; text-align: justify;">{{ $item->silabus }}</td>
-          <td>
+          <td style="width: 10%; text-align: center;">{{ $item->nama_matkul_pilihan }}</td>
+          <td style="width: 10%; text-align: center;">{{ $item->kode_mk }}</td>
+          <td style="text-align: center">{{ $item->sks }}</td>
+          <td style="text-align: center">{{ $item->semester }}</td>
+          <td style="width: 30%; text-align: justify;">{{ $item->silabus }}</td>
+          <td style="width: 20%; text-align: center;">{{ $item->materi_pokok }}</td>
+          <td style="text-align: center">
               <button  data-toggle="modal" data-target="#editModal" class="icon_aksi1"
-                data-mynama="{{$item->nama_matkul_pilihan}}" data-mykode="{{$item->kode_mk}}" data-mysks="{{$item->sks}}"  data-mysemester="{{$item->semester}}" data-id="{{$item->id}}" data-mysilabus="{{$item->silabus}}"><i class="fas fa-edit fa-2x"></i></button>
+                data-mynama="{{$item->nama_matkul_pilihan}}" data-mykode="{{$item->kode_mk}}" data-mysks="{{$item->sks}}"  data-mysemester="{{$item->semester}}" data-id="{{$item->id}}" data-mysilabus="{{$item->silabus}}" data-mymateri_pokok="{{$item->materi_pokok}}"><i class="fas fa-edit fa-2x"></i></button>
               <button onclick="window.location.href='/upload_matkul_pilihan/hapus_matkul_pilihan/{{ $item->id }}';" class="icon_aksi2" ><i class="fas fa-trash-alt fa-2x"></i></button>
           </td>
       </tr>
@@ -70,8 +72,8 @@
             <input class="modal_body" name="nama_matkul_pilihan" type="text" placeholder="Nama Matakuliah"> 
             <input class="modal_body" name="sks" type="text" placeholder="SKS"> 
             <input class="modal_body" name="semester" type="text" placeholder="Semester"> 
-            <input class="modal_body" name="silabus" type="text" placeholder="Silabus"
-
+            <input class="modal_body" name="silabus" type="text" placeholder="Silabus">
+            <input class="modal_body" name="materi_pokok" type="text" placeholder="Materi_pokok">
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" value="Upload" class="btn btn-primary">Save changes</button>
@@ -101,6 +103,7 @@
             <input class="modal_body" name="sks" type="text" id="sks"> 
             <input class="modal_body" name="semester" type="text" id="semester"> 
             <input class="modal_body" name="silabus" type="text" id="silabus">
+            <input class="modal_body" name="materi_pokok" type="text" id="materi_pokok">
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button  type="submit" value="Simpan Data" class="btn btn-primary">Save changes</button>
@@ -119,6 +122,7 @@
       var sks = button.data('mysks')
       var semester = button.data('mysemester')
       var silabus = button.data('mysilabus')
+      var materi_pokok = button.data('mymateri_pokok')
       var id = button.data('id')
     
       var modal =$(this)
@@ -127,6 +131,7 @@
       modal.find('.modal-body #sks').val(sks);
       modal.find('.modal-body #semester').val(semester);
       modal.find(' .modal-body #silabus').val(silabus);
+      modal.find(' .modal-body #materi_pokok').val(materi_pokok);
       modal.find('.modal-body #id').val(id);
     })
     
@@ -142,9 +147,9 @@
   $(document).ready(function () {
     $('#dtBasicExample').DataTable({
       "paging": true,
-      "pageLength": 3,
+      "pageLength": 5,
       "sPagingType": "simple_numbers",
-      "lengthMenu": [ 3 , 6 , 9, "All" ]
+      "lengthMenu": [ 5 , 10 , 20, ]
     });
     $('.dataTables_length').addClass('bs-select');
   });

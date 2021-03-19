@@ -80,12 +80,6 @@ class AdminController extends Controller
                     return redirect()->back();
             }
             
-            // public function edit_matkul_wajib($id){
-            //     // mengambil data berdasarkan id yang dipilih
-            //     $matkul = Model_matkul_wajib::find($id);
-            //     // passing data matkul yang didapat ke view 
-            //     return view('admin.admin_view.matkul_wajib',['matkul_wajib' => $matkul]);
-            // }
             // update data matkul
             public function update_matkul_wajib(Request $request)
             {
@@ -112,6 +106,7 @@ class AdminController extends Controller
             'sks' => 'required',
             'semester' => 'required',
             'silabus' => 'required',
+            'materi_pokok' => 'required',
             
         ]);
         
@@ -121,6 +116,7 @@ class AdminController extends Controller
             'sks' => $request->sks,
             'semester' =>$request->semester,
             'silabus' =>$request->silabus,
+            'materi_pokok' =>$request->materi_pokok,
         ]);
         return redirect()->back();
     }
@@ -130,12 +126,6 @@ class AdminController extends Controller
             return redirect()->back();
     }
     
-    // public function edit_matkul_pilihan($id){
-    //     // mengambil data berdasarkan id yang dipilih
-    //     $matkul = Model_matkul_pilihan::find($id);
-    //     // passing data matkul yang didapat ke view 
-    //     return view('admin.admin_view.matkul_pilihan',['matkul_pilihan' => $matkul]);
-    // }
     // update data matkul
     public function update_matkul_pilihan(Request $request)
     {
@@ -155,17 +145,8 @@ class AdminController extends Controller
         return redirect('user/' .$idusers. '/profile');
     }
 
-//     public function update_nilai(Request $request)
-//     {
-//         dd($request->all());
-//         $nilai = Model_matkul_wajib_user::findOrFail($request->id);
-//         $nilai->update($request->all());
-//         return back();
-//     }
-//     public function hapus_nilai($id,Request $request){
-        
-//         model_matkul_wajib_user::where('id',$id)->delete();
-//         dd($request->all());
-//         return redirect()->back();
-// }
+    public function hapus_nilai($id){
+        Model_matkul_wajib::where('id',$id)->delete();
+        return redirect()->back();
+    }
 }

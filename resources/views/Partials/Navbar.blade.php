@@ -10,9 +10,9 @@
   <label class="logo">Sistem Pendukung Keputusan</label>
   <label class="mini_logo"> Metode Profile Matching</label>
   <ul>
-      <li><a href="/home">Home</a></li>
-      <li><a href="/AboutUs">About</a></li>
-      <li><a href="/Metode_perhitungan">Metode Perhitungan</a></li>
+      <li><a style="text-decoration: none;" href="/home">Home</a></li>
+      <li><a style="text-decoration: none;" href="/AboutUs">About</a></li>
+      <li><a style="text-decoration: none;" href="/Metode_perhitungan">Metode Perhitungan</a></li>
       <li>
         <div class="dropdown1">
           <button class="dropbtn1">

@@ -37,7 +37,17 @@
         .btn_nilai:hover{
             background-color: #1b9bff;
         }
+        .dataTables_wrapper .dataTables_filter {
+            float: right;
+            text-align: right;
+            visibility: hidden;
+            }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  
 </head>
 <body>
     <img class="back_home1" src="{{asset('assets/images/back_home.jpg')}}" alt="">
@@ -45,45 +55,39 @@
         <p class="profile1">Nama : {{auth()->user()->name}}</p>
         <p class="profile1">NIM  : {{auth()->user()->nim}}</p>
     </div>
-
     {{--  table  --}}
     <table class="table" style="width: 80%; margin-left: 9.5%; margin-right: 10%">
         <thead>
             <tr>
             <th scope="col">Nama Matakuliah</th>
             <th style="text-align: center;  " scope="col">SKS</th>
+            <th style="text-align: center;" scope="col">Nilai Huruf</th>
             <th style="text-align: center;color:#ff9f66" scope="col">Nilai</th>
             <th style="text-align: center;color:" scope="col">GAP</th>
             <th style="text-align: center;color:" scope="col">Nilai Bobot</th>
             </tr>
         </thead>
         <tbody>
+            @php
+                $vararr = 0;
+                $tambahbobot = 0;
+                $ambilbobot = 0;
+                $jumlahbobot = 0;
+            @endphp
             @foreach (auth()->user()->matkul_wajib as $item)
+            <span hidden>{{$vararr = $item->pivot->nilai + $vararr}}</span>
             <tr>
                 <td>{{$item->nama_matkul_wajib}}</td>
                 <td style="text-align: center">{{$item->sks}}</td>
-                <td style="text-align: center;color:#ff9f66">{{$item->pivot->nilai}}</td>
+                <td style="text-align: center;">{{$item->pivot->nilai_huruf}}</td>  
+                <td style="text-align: center;color:#ff9f66">{{$item->pivot->nilai}}</td>                  
                 <td style="text-align: center;">{{$item->pivot->nilai-4}}</td>
-                {{--  nilai bobot  --}}
-                @if ($item->pivot->nilai-4==0)
-                    <td style="text-align: center;">5</td>
-                    @elseif ($item->pivot->nilai-4==-0.5)
-                    <td style="text-align: center;">4.5</td>
-                    @elseif ($item->pivot->nilai-4==-1)
-                    <td style="text-align: center;">4</td>
-                    @elseif ($item->pivot->nilai-4==-1.5)
-                    <td style="text-align: center;">3.5</td>
-                    @elseif ($item->pivot->nilai-4==-2)
-                    <td style="text-align: center;">3</td>
-                    @elseif ($item->pivot->nilai-4==-3)
-                    <td style="text-align: center;">2</td>
-                    @elseif ($item->pivot->nilai-4==-4)
-                    <td style="text-align: center;">1</td>
-                @endif
+                <td style="text-align: center;">{{$item->pivot->bobot}}</td>
             </tr>
+            <span hidden> {{$tambahbobot = $item->pivot->bobot + $tambahbobot}}</span>
             @endforeach
         </tbody>
     </table>
-    <button type="button" onclick="window.location.href='/rekomendasi';" class="btn_nilai">Rekomendasi</button>
+    <button type="button" name="rekom" onclick="window.location.href='/{{auth()->user()->name}}/rekomendasi';" class="btn_nilai">Rekomendasi</button>
 </body>
 @stop

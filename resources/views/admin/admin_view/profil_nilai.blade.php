@@ -30,6 +30,7 @@
         <th>Nama Matakuliah</th>
         <th>Nilai</th>
         <th>Semester</th>
+        <th>Hapus</th>
       </tr>
     </thead>
     <tbody>
@@ -42,11 +43,7 @@
         <td>{{$item->nama_matkul_wajib}}</td>
         <td>{{$item->pivot->nilai}}</td>
         <td>{{$item->semester}}</td>
-        {{--  <td style="text-align: center;">
-          <button data-id="{{ $item->id }}" data-toggle="modal" data-target="#editModal" data-mynilai="{{$item->pivot->nilai}}" data-id="{{$item->id}}" data-my_user_id="{{$item->user_id}}" data-my_model_matkul_wajib_id="{{$item->model_matkul_wajib_id}}"
-          class="icon_aksi1"><i class="fas fa-edit fa-2x"></i></button>
-          <button onclick="window.location.href='/upload_nilai/hapus_nilai/{{ $item->id }}';" class="icon_aksi2" ><i class="fas fa-trash-alt fa-2x"></i></button>
-        </td>  --}}
+        <td><button onclick="window.location.href='/hapus_nilai/{{ $item->id }}';" class="icon_aksi2" ><i class="fas fa-trash-alt fa-2x"></i></button></td>
       </tr>
       @endforeach
     </tbody>

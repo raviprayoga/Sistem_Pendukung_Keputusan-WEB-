@@ -7,8 +7,6 @@ use App\Model_matkul_pilihan;
 use App\model_matkul_wajib_user;
 use App\ModelUser;
 use App\User;
-// use App\User;
-// use App\Model_matkul_wajib;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -28,11 +26,7 @@ class UserController extends Controller
     public function metode(){
         return view('landing.metode');
     }
-    // profile
-    public function profile(){
-        $tampil = Auth::user()->makul_wajib;
-        return view('Home.profile', compact('tampil'));
-    }
+    
 
     // Login
     public function login(){
@@ -101,16 +95,64 @@ class UserController extends Controller
             $data = new model_matkul_wajib_user();
             $data->model_matkul_wajib_id = $matkul;
             $data->user_id = $idusers;
-            $data->nilai = $request->nilai[$key];
+            $data->nilai_huruf=$request->nilai_huruf[$key];
+            if($data->nilai_huruf == "a" || $data->nilai_huruf == "A"){
+                $data->nilai=4;
+            }else if($data->nilai_huruf == "ab" || $data->nilai_huruf == "Ab" || $data->nilai_huruf == "AB" || $data->nilai_huruf == "aB"){
+                $data->nilai=3.5;
+            }else if($data->nilai_huruf == "b" || $data->nilai_huruf == "B"){
+                $data->nilai = 3;
+            }else if($data->nilai_huruf == "bc" || $data->nilai_huruf == "Bc" || $data->nilai_huruf == "BC" || $data->nilai_huruf == "bC"){
+                $data->nilai = 2.5;
+            }else if($data->nilai_huruf == "c" || $data->nilai_huruf == "C"){
+                $data->nilai=2;
+            }else if($data->nilai_huruf == "d" || $data->nilai_huruf == "D"){
+                $data->nilai=1;
+            }else if($data->nilai_huruf == "e" || $data->nilai_huruf == "E"){
+                $data->nilai=0;
+            }
+
+            // bobot nilai
+            if($data->nilai == 4){
+                $data->bobot = 5;
+            }else if($data->nilai == 3.5){
+                $data->bobot = 4.5;
+            }else if($data->nilai == 3){
+                $data->bobot = 4;
+            }else if($data->nilai == 2.5){
+                $data->bobot = 3.5;
+            }else if($data->nilai == 2){
+                $data->bobot = 3;
+            }else if($data->nilai == 1){
+                $data->bobot = 2;
+            }else if ($data->nilai == 0){
+                $data->bobot = 1;
+            }else{
+                $data->bobot = 0;
+            }
             $data->save();
         }
-        // $users->matkul_wajib()->attach($request->matkul,['nilai' => $request->nilai]);
-        return redirect('/rekomendasi');
+        return redirect('/{auth()->user()->name}/rekomendasi');
+    }
+    // profile
+    public function profile(){
+        $matkul = \App\Model_matkul_pilihan::all();
+        $tampil = Auth::user()->makul_wajib;
+        return view('Home.profile', compact('tampil'), ['matkul' => $matkul]);
     }
     // rekomendasi
-    public function getrekomendasi(){
+    public function getrekomendasi($id){
+        $users = \App\User::find($id);
+        $tampil = Auth::user()->makul_pilihan;
+        $matkulw = \App\Model_matkul_wajib::all();
         $matkul = \App\Model_matkul_pilihan::all();
-        return view('Home.rekomendasi', ['matkul_pilihan' => $matkul]);
+        return view('Home.rekomendasi',compact('tampil') , ['users' => $users,'matkul' => $matkul]);
+    }
+    //keterangan matkul
+    public function getKeterangan($id){
+        $users = \App\User::find($id);
+        $matkul = \App\Model_matkul_pilihan::find($id);
+        return view('Home.Halaman_keterangan', ['users' =>$users ,'matkul' =>$matkul]);
     }
 
 }

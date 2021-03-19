@@ -10,6 +10,6 @@ class Model_matkul_wajib extends Model
     protected $fillable = ['kode_mk','nama_matkul_wajib','sks','semester'];
 
     public function user(){
-        return $this->belongsToMany('App\User')->withPivot(['nilai']);
+        return $this->belongsToMany('App\User')->withPivot(['nilai_huruf','nilai', 'bobot']);
     }
 }

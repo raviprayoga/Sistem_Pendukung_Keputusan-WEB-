@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name', 'nim' ,'email', 'password',
     ];
     public function matkul_wajib(){
-        return $this->belongsToMany('App\Model_matkul_wajib')->withPivot(['nilai'])->withTimestamps();
+        return $this->belongsToMany('App\Model_matkul_wajib')->withPivot(['nilai_huruf','nilai','bobot'])->withTimestamps();
     }
     /**
      * The attributes that should be hidden for arrays.
