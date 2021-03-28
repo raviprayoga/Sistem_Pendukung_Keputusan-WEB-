@@ -141,12 +141,53 @@ class AdminController extends Controller
     }
     public function addnilai(Request $request,$idusers){
         $users = \App\User::find($idusers);
-        $users->matkul_wajib()->attach($request->matkul,['nilai' => $request->nilai]);
+        foreach((array)$request->matkul as $key=>$matkul){
+            $data = new model_matkul_wajib_user();
+            $data->model_matkul_wajib_id = $matkul;
+            $data->user_id = $idusers;
+            $data->nilai_huruf=$request->nilai_huruf[$key];
+            if($data->nilai_huruf == "a" || $data->nilai_huruf == "A"){
+                $data->nilai=4;
+            }else if($data->nilai_huruf == "ab" || $data->nilai_huruf == "Ab" || $data->nilai_huruf == "AB" || $data->nilai_huruf == "aB"){
+                $data->nilai=3.5;
+            }else if($data->nilai_huruf == "b" || $data->nilai_huruf == "B"){
+                $data->nilai = 3;
+            }else if($data->nilai_huruf == "bc" || $data->nilai_huruf == "Bc" || $data->nilai_huruf == "BC" || $data->nilai_huruf == "bC"){
+                $data->nilai = 2.5;
+            }else if($data->nilai_huruf == "c" || $data->nilai_huruf == "C"){
+                $data->nilai=2;
+            }else if($data->nilai_huruf == "d" || $data->nilai_huruf == "D"){
+                $data->nilai=1;
+            }else if($data->nilai_huruf == "e" || $data->nilai_huruf == "E"){
+                $data->nilai=0;
+            }else{
+                $data->nilai=0;
+            }
+            // bobot nilai
+            if($data->nilai == 4){
+                $data->bobot = 5;
+            }else if($data->nilai == 3.5){
+                $data->bobot = 4.5;
+            }else if($data->nilai == 3){
+                $data->bobot = 4;
+            }else if($data->nilai == 2.5){
+                $data->bobot = 3.5;
+            }else if($data->nilai == 2){
+                $data->bobot = 3;
+            }else if($data->nilai == 1){
+                $data->bobot = 2;
+            }else if ($data->nilai == 0){
+                $data->bobot = 1;
+            }else{
+                $data->bobot = 0;
+            }
+            $data->save();
+        }
         return redirect('user/' .$idusers. '/profile');
     }
 
     public function hapus_nilai($id){
-        Model_matkul_wajib::where('id',$id)->delete();
+        model_matkul_wajib_user::where('model_matkul_wajib_id',$id)->delete();
         return redirect()->back();
     }
 }

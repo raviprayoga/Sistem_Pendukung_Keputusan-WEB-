@@ -2,13 +2,14 @@
 @section('content')
 <head>
     <style>
-        .tombol{
-            margin-top: 10%;
-            margin-left: 33%;
-            margin-right: 2%;
+        .rekom{
+            margin-top: 0px;
+            position: absolute;
+            margin-left: 10%;
         }
         .tombol2{
-            margin-top: 10%;
+            margin-top: 30px;
+            margin-left: 40%;
         }
         .paginate_button{
             background-color: transparent;
@@ -66,15 +67,14 @@
 </head>
 <body>
     <img class="back_home1" src="{{asset('assets/images/back_home.jpg')}}" alt="">
-    
+        
     @php
-        $data_matkul_wajib = [$probstat=0 , $oak=0, $mrv=0, $basdat=0, $matdis=0, $logif=0, $asd=0, $tbfo=0, $stigma=0, $so=0, $pbo=0,
-        $drpl=0, $imk=0, $web=0, $ai=0, $mppl=0, $jarkom=0, $si=0, $kwu=0, $ppl=0, $grafkom=0, $pam=0, $mbd=0, $embeded=0, $socio=0];
         $data_matkul_pilihan = [ $kj=0, $tgame=0, $sil=0 , $DataMining=0 , $Kriptografi=0, $PervasiveComputing=0, $PengolahanSinyalDigital=0, $InformationRetieval=0, $TeknologiBasisData=0, 
         $RepresentasiPengetahuanDanPenalaran=0, $PengolahanCitraDigital=0, $PembelajaranMesin=0, $PengolahanBahasaAlami=0, $JaringanKomputerLanjut=0, $pwl=0,
-        $SistemTeknologiMultimedia=0, $VisualisasiDataDanInformasi=0, $SistemInformasiGeografis=0];
-        $cf = 0;
-        $sf = 0;
+        $SistemTeknologiMultimedia=0, $VisualisasiDataDanInformasi=0, $SistemInformasiGeografis=0, $PemrogramanParalel=0]; 
+        $data_matkul_wajib = [$probstat=0 , $oak=0, $mrv=0, $basdat=0, $matdis=0, $logif=0, $asd=0, $tbfo=0, $stigma=0, $so=0, $pbo=0,
+        $drpl=0, $imk=0, $web=0, $ai=0, $mppl=0, $jarkom=0, $si=0, $kwu=0, $ppl=0, $grafkom=0, $pam=0, $mbd=0, $embeded=0, $socio=0];
+    
     @endphp
     @foreach (auth()->user()->matkul_wajib as $item)
         @foreach ($matkul as $itempilihan)
@@ -88,9 +88,25 @@
                 @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
                     <span hidden>{{$oak = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($jarkom)/1}}</span>
-                <span hidden>{{$sf = ($so+$oak)/2}}</span>
-                <span hidden>{{$kj = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = $jarkom}}</span>
+                <span hidden>{{$sf = ($oak+$so)/2}}</span>
+                <span hidden>{{$kj = (($cf*0.6)+($sf*0.4))/2 }} </span>
+            @endif
+
+            @if ($itempilihan->nama_matkul_pilihan == "Jaringan Komputer Lanjut")
+                @if ($item->nama_matkul_wajib == "Jaringan Komputer")
+                    <span hidden>{{$jarkom = $item->pivot->bobot}} </span> 
+                @endif
+                @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
+                    <span hidden>{{$oak = $item->pivot->bobot}} </span>
+                @endif
+                @if ($item->nama_matkul_wajib == "Sistem Operasi")
+                    <span hidden>{{$so = $item->pivot->bobot}} </span>
+                @endif
+                <span hidden>{{$cf = $jarkom}}</span>
+                <span hidden>{{$sf = ($oak+$so)/2}}</span>
+                <span hidden>{{$JaringanKomputerLanjut = (($cf*0.6)+($sf*0.4))/2 }} </span>
+                
             @endif
             
             @if ($itempilihan->nama_matkul_pilihan == "Teknologi Game")
@@ -106,9 +122,9 @@
                 @if ($item->nama_matkul_wajib == "Matematika Diskrit")
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($asd+$pbo)/2}}</span>
-                <span hidden>{{$sf = ($stigma+$matdis)/2}}</span>
-                <span hidden>{{$tgame = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = ($stigma+$pbo)/2}}</span>
+                <span hidden>{{$sf = ($asd+$matdis)/2}}</span>
+                <span hidden>{{$tgame = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Sistem Informasi Lanjut")
@@ -118,12 +134,10 @@
                 @if ($item->nama_matkul_wajib == "Basis Data")
                     <span hidden>{{$basdat = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Matematika Diskrit")
-                    <span hidden>{{$matdis = $item->pivot->bobot}} </span>
-                @endif
-                <span hidden>{{$cf = ($si)/1}}</span>
-                <span hidden>{{$sf = ($basdat+$matdis)/2}}</span>
-                <span hidden>{{$sil = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = $si}}</span>
+                <span hidden>{{$sf = $basdat}}</span>
+                <span hidden>{{$sil = (($cf*0.6)+($sf*0.4))/2 }} </span>
+                
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Sistem/Teknologi Multimedia")
@@ -132,9 +146,6 @@
                 @endif
                 @if ($item->nama_matkul_wajib == "Sistem Operasi")
                     <span hidden>{{$so = $item->pivot->bobot}} </span>
-                @endif
-                @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
-                    <span hidden>{{$oak = $item->pivot->bobot}} </span>
                 @endif
                 @if ($item->nama_matkul_wajib == "Interaksi Manusia dan Komputer")
                     <span hidden>{{$imk = $item->pivot->bobot}} </span>
@@ -145,16 +156,16 @@
                 @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
                     <span hidden>{{$asd = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($oak+$si+$imk)/3}}</span>
-                <span hidden>{{$sf = ($drpl+$jarkom+$asd)/3}}</span>
-                <span hidden>{{$SistemTeknologiMultimedia = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = ($jarkom+$imk+$asd)/3}}</span>
+                <span hidden>{{$sf = ($drpl+$so)/2}}</span>
+                <span hidden>{{$SistemTeknologiMultimedia = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
             
             @if ($itempilihan->nama_matkul_pilihan == "Pemrograman Web Lanjut")
-                @if ($item->nama_matkul_wajib == "Pemrograman Web")
+                @if ($item->nama_matkul_wajib == "Pengembangan Aplikasi Berbasis Web")
                 <span hidden>{{$web = $item->pivot->bobot}} </span> 
                 @endif
-                @if ($item->nama_matkul_wajib == "Pemrograman Berorientasi Obyek")
+                @if ($item->nama_matkul_wajib == "Pemrograman Berorientasi Objek")
                     <span hidden>{{$pbo = $item->pivot->bobot}} </span>
                 @endif
                 @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
@@ -163,12 +174,9 @@
                 @if ($item->nama_matkul_wajib == "Basis Data")
                     <span hidden>{{$basdat = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Matematika Diskrit")
-                    <span hidden>{{$matdis = $item->pivot->bobot}} </span>
-                @endif
-                <span hidden>{{$cf = ($web+$pbo+$asd+$basdat)/4}}</span>
-                <span hidden>{{$sf = ($matdis)/1}}</span>
-                <span hidden>{{$pwl = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = ($web+$basdat)/2}}</span>
+                <span hidden>{{$sf = ($pbo+$asd)/2}}</span>
+                <span hidden>{{$pwl = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Data Mining")
@@ -181,12 +189,12 @@
                 @if ($item->nama_matkul_wajib == "Matematika Diskrit")
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Probabilitas dan Statiska")
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
                     <span hidden>{{$probstat = $item->pivot->bobot}} </span>
                 @endif
                 <span hidden>{{$cf = ($basdat+$ai)/2}}</span>
                 <span hidden>{{$sf = ($matdis+$probstat)/2}}</span>
-                <span hidden>{{$DataMining = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$DataMining = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Kriptografi")
@@ -194,17 +202,17 @@
                     <span hidden>{{$jarkom = $item->pivot->bobot}} </span> 
                 @endif
                 @if ($item->nama_matkul_wajib == "Sistem Operasi")
-                    <span hidden>{{$si = $item->pivot->bobot}} </span>
+                    <span hidden>{{$so = $item->pivot->bobot}} </span>
                 @endif
                 @if ($item->nama_matkul_wajib == "Matematika Diskrit")
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
-                    <span hidden>{{$oak = $item->pivot->bobot}} </span>
+                @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
+                    <span hidden>{{$asd = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($jarkom+$matdis)/2}}</span>
-                <span hidden>{{$sf = ($so+$oak)/2}}</span>
-                <span hidden>{{$Kriptografi = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = ($jarkom+$matdis+$asd)/3}}</span>
+                <span hidden>{{$sf = $so}}</span>
+                <span hidden>{{$Kriptografi = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
             
             @if ($itempilihan->nama_matkul_pilihan == "Pervasive Computing")
@@ -220,13 +228,13 @@
                 @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
                     <span hidden>{{$asd = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($embeded+$asd+$pbo)/3}}</span>
-                <span hidden>{{$sf = ($matdis)/1}}</span>
-                <span hidden>{{$PervasiveComputing = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = ($embeded+$matdis)/2}}</span>
+                <span hidden>{{$sf = ($asd+$pbo)/2}}</span>
+                <span hidden>{{$PervasiveComputing = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Pengolahan Sinyal Digital")
-                @if ($item->nama_matkul_wajib == "Probabilitas dan Statiska")
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
                 <span hidden>{{$probstat = $item->pivot->bobot}} </span> 
                 @endif
                 @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
@@ -235,21 +243,21 @@
                 @if ($item->nama_matkul_wajib == "Matematika Diskrit")
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($oak+$matdis)/2}}</span>
-                <span hidden>{{$sf = ($probstat)/1}}</span>
-                <span hidden>{{$PengolahanSinyalDigital = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = ($oak+$probstat)/2}}</span>
+                <span hidden>{{$sf = ($matdis)/1}}</span>
+                <span hidden>{{$PengolahanSinyalDigital = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Information Retieval")
-                @if ($item->nama_matkul_wajib == "Probabilitas dan Statiska")
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
                     <span hidden>{{$probstat = $item->pivot->bobot}} </span> 
                 @endif
                 @if ($item->nama_matkul_wajib == "Matematika Diskrit")
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($probstat)/1}}</span>
-                <span hidden>{{$sf = ($matdis)/1}}</span>
-                <span hidden>{{$InformationRetieval = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = $probstat}}</span>
+                <span hidden>{{$sf = $matdis}}</span>
+                <span hidden>{{$InformationRetieval = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
             
             @if ($itempilihan->nama_matkul_pilihan == "Teknologi Basis Data")
@@ -263,29 +271,23 @@
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
                 <span hidden>{{$cf = ($mbd+$basdat)/2}}</span>
-                <span hidden>{{$sf = ($matdis)/1}}</span>
-                <span hidden>{{$TeknologiBasisData = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$sf = $matdis}}</span>
+                <span hidden>{{$TeknologiBasisData = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Representasi Pengetahuan dan Penalaran")
                 @if ($item->nama_matkul_wajib == "Intelegensi Buatan")
                 <span hidden>{{$ai = $item->pivot->bobot}} </span> 
                 @endif
-                @if ($item->nama_matkul_wajib == "Probabilitas dan Statiska")
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
                     <span hidden>{{$probstat = $item->pivot->bobot}} </span>
                 @endif
                 @if ($item->nama_matkul_wajib == "Strategi Algoritma")
                     <span hidden>{{$stigma = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Matematika Diskrit")
-                    <span hidden>{{$matdis = $item->pivot->bobot}} </span>
-                @endif
-                @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
-                    <span hidden>{{$asd = $item->pivot->bobot}} </span>
-                @endif
-                <span hidden>{{$cf = ($ai+$probstat+$stigma)/3}}</span>
-                <span hidden>{{$sf = ($matdis+$asd)/2}}</span>
-                <span hidden>{{$RepresentasiPengetahuanDanPenalaran = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = $ai}}</span>
+                <span hidden>{{$sf = ($probstat+$stigma)/2}}</span>
+                <span hidden>{{$RepresentasiPengetahuanDanPenalaran = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Pengolahan Citra Digital")
@@ -295,74 +297,53 @@
                 @if ($item->nama_matkul_wajib == "Matriks dan Ruang Vektor")
                     <span hidden>{{$mrv = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Probabilitas dan Statiska")
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
                     <span hidden>{{$probstat = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Matematika Diskrit")
-                    <span hidden>{{$matdis = $item->pivot->bobot}} </span>
-                @endif
                 <span hidden>{{$cf = ($ai+$mrv)/2}}</span>
-                <span hidden>{{$sf = ($probstat+$matdis)/2}}</span>
-                <span hidden>{{$PengolahanCitraDigital = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$sf = $probstat}}</span>
+                <span hidden>{{$PengolahanCitraDigital = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
             
             @if ($itempilihan->nama_matkul_pilihan == "Pembelajaran Mesin")
                 @if ($item->nama_matkul_wajib == "Intelegensi Buatan")
                 <span hidden>{{$ai = $item->pivot->bobot}} </span> 
                 @endif
-                @if ($item->nama_matkul_wajib == "Probabilitas dan Statiska")
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
                     <span hidden>{{$probstat = $item->pivot->bobot}} </span>
                 @endif
                 @if ($item->nama_matkul_wajib == "Strategi Algoritma")
                     <span hidden>{{$stigma = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Matematika Diskrit")
-                    <span hidden>{{$matdis = $item->pivot->bobot}} </span>
-                @endif
                 @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
                     <span hidden>{{$asd = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($asd+$matdis)/2}}</span>
-                <span hidden>{{$sf = ($probstat+$stigma+$ai)/3}}</span>
-                <span hidden>{{$PembelajaranMesin = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = $ai}}</span>
+                <span hidden>{{$sf = ($probstat+$stigma+$asd)/3}}</span>
+                <span hidden>{{$PembelajaranMesin = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Pengolahan Bahasa Alami")
                 @if ($item->nama_matkul_wajib == "Intelegensi Buatan")
                 <span hidden>{{$ai = $item->pivot->bobot}} </span> 
                 @endif
-                @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
-                    <span hidden>{{$oak = $item->pivot->bobot}} </span>
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
+                <span hidden>{{$probstat = $item->pivot->bobot}} </span>
+                @endif
+                @if ($item->nama_matkul_wajib == "Teori Bahasa Formal dan Otomata")
+                    <span hidden>{{$tbfo = $item->pivot->bobot}} </span>
                 @endif
                 @if ($item->nama_matkul_wajib == "Matematika Diskrit")
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
-                @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
-                    <span hidden>{{$asd = $item->pivot->bobot}} </span>
-                @endif
                 @if ($item->nama_matkul_wajib == "Strategi Algoritma")
                     <span hidden>{{$stigma = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($stigma+$asd)/2}}</span>
-                <span hidden>{{$sf = ($matdis+$oak+$ai)/3}}</span>
-                <span hidden>{{$PengolahanBahasaAlami = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = ($ai+$probstat+$tbfo+$matdis)/4}}</span>
+                <span hidden>{{$sf = $stigma}}</span>
+                <span hidden>{{$PengolahanBahasaAlami = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
-            @if ($itempilihan->nama_matkul_pilihan == "Jaringan Komputer Lanjut")
-                @if ($item->nama_matkul_wajib == "Jaringan Komputer")
-                    <span hidden>{{$jarkom = $item->pivot->bobot}} </span> 
-                @endif
-                @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
-                    <span hidden>{{$oak = $item->pivot->bobot}} </span>
-                @endif
-                @if ($item->nama_matkul_wajib == "Sistem Operasi")
-                    <span hidden>{{$so = $item->pivot->bobot}} </span>
-                @endif
-                <span hidden>{{$cf = ($jarkom+$so)/2}}</span>
-                <span hidden>{{$sf = ($oak)/1}}</span>
-                <span hidden>{{$JaringanKomputerLanjut = $cf*0.6 + $sf*0.4}} </span>
-            @endif
-            
             @if ($itempilihan->nama_matkul_pilihan == "Visualisasi Data dan Informasi")
                 @if ($item->nama_matkul_wajib == "Interaksi Manusia dan Komputer")
                 <span hidden>{{$imk = $item->pivot->bobot}} </span> 
@@ -370,12 +351,15 @@
                 @if ($item->nama_matkul_wajib == "Dasar Rekayasa Perangkat Lunak")
                     <span hidden>{{$drpl = $item->pivot->bobot}} </span>
                 @endif
+                @if ($item->nama_matkul_wajib == "Probabilitas dan Statistika")
+                <span hidden>{{$probstat = $item->pivot->bobot}} </span>
+                @endif
                 @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
                     <span hidden>{{$asd = $item->pivot->bobot}} </span>
                 @endif
-                <span hidden>{{$cf = ($drpl+$imk)/2}}</span>
-                <span hidden>{{$sf = ($asd)/1}}</span>
-                <span hidden>{{$VisualisasiDataDanInformasi = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$cf = $imk}}</span>
+                <span hidden>{{$sf = ($asd+$probstat+$drpl)/3}}</span>
+                <span hidden>{{$VisualisasiDataDanInformasi = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
 
             @if ($itempilihan->nama_matkul_pilihan == "Sistem Informasi Geografis")
@@ -389,108 +373,129 @@
                     <span hidden>{{$matdis = $item->pivot->bobot}} </span>
                 @endif
                 <span hidden>{{$cf = ($basdat+$si)/2}}</span>
-                <span hidden>{{$sf = ($matdis)/1}}</span>
-                <span hidden>{{$SistemInformasiGeografis = $cf*0.6 + $sf*0.4}} </span>
+                <span hidden>{{$sf = $matdis}}</span>
+                <span hidden>{{$SistemInformasiGeografis = (($cf*0.6)+($sf*0.4))/2 }} </span>
             @endif
+
+            @if ($itempilihan->nama_matkul_pilihan == "Pemrograman Paralel")
+                @if ($item->nama_matkul_wajib == "Sistem Operasi")
+                <span hidden>{{$so = $item->pivot->bobot}} </span>
+                @endif
+                @if ($item->nama_matkul_wajib == "Algoritma dan Struktur Data")
+                    <span hidden>{{$asd = $item->pivot->bobot}} </span>
+                @endif
+                @if ($item->nama_matkul_wajib == "Strategi Algoritma")
+                    <span hidden>{{$stigma = $item->pivot->bobot}} </span>
+                @endif
+                @if ($item->nama_matkul_wajib == "Intelegensi Buatan")
+                <span hidden>{{$ai = $item->pivot->bobot}} </span> 
+                @endif
+                @if ($item->nama_matkul_wajib == "Organisasi dan Arsitektur Komputer")
+                    <span hidden>{{$oak = $item->pivot->bobot}} </span>
+                @endif
+                <span hidden>{{$cf = ($so+$asd+$stigma+$ai)/4}}</span>
+                <span hidden>{{$sf = $oak}}</span>
+                <span hidden>{{$PemrogramanParalel = (($cf*0.6)+($sf*0.4))/2 }} </span>
+            @endif
+
         @endforeach
     @endforeach
 
-    <button class="btn btn-primary tombol" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Tampilkan Rekomendasi Matakuliah
-    </button>
     <button class="btn btn-primary tombol2" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
         Tampilkan Seluruh Matakuliah Pilihan
     </button>
-
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <div class="teks">
-                <p> {{auth()->user()->name}}, berikut adalah matakuliah pilihan program studi yang sesuai dengan kompetensi individu kamu</p>
-            </div>
-            <table id="example" class="display" style="width:50%; margin-left: 25%;">   
-                <thead>
-                    <tr class="table table-dark">
-                        <th>Nama Matkul Pilihan</th>
-                        <th>Nilai</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Data Mining</td>
-                        <td>{{$DataMining}}</td>
-                    </tr>
-                    <tr>
-                        <td>Kriptografi</td>
-                        <td>{{$Kriptografi}}</td>
-                    </tr>
-                    <tr>
-                        <td>Pervasive Computing</td>
-                        <td>{{$PervasiveComputing}}</td>
-                    </tr>
-                    <tr>
-                        <td>Teknologi Game</td>
-                        <td>{{$tgame}}</td>
-                    </tr>
-                    <tr>
-                        <td>Pengolahan Sinyal Digital</td>
-                        <td>{{$PengolahanSinyalDigital}}</td>
-                    </tr>
-                    <tr>
-                        <td>Information Retieval</td>
-                        <td>{{$InformationRetieval}}</td>
-                    </tr>
-                    <tr>
-                        <td>Teknologi Basis Data</td>
-                        <td>{{$TeknologiBasisData}}</td>
-                    </tr>
-                    <tr>
-                        <td>Representasi Pengetahuan dan Penalaran</td>
-                        <td>{{$RepresentasiPengetahuanDanPenalaran}}</td>
-                    </tr>
-                    <tr>
-                        <td>Pengolahan Citra Digital</td>
-                        <td>{{$PengolahanCitraDigital}}</td>
-                    </tr>
-                    <tr>
-                        <td>Pembejaran Mesin</td>
-                        <td>{{$PembelajaranMesin}}</td>
-                    </tr>
-                    <tr>
-                        <td>Pengolahan Bahasa Alami</td>
-                        <td>{{$PengolahanBahasaAlami}}</td>
-                    </tr>
-                    <tr>
-                        <td>Sistem Informasi Lanjut</td>
-                        <td>{{$sil}}</td>
-                    </tr>
-                    <tr>
-                        <td>Keamanan Jaringan</td>
-                        <td>{{$kj}}</td>
-                    </tr>
-                    <tr>
-                        <td>Jaringan Komputer Lanjut</td>
-                        <td>{{$JaringanKomputerLanjut}}</td>
-                    </tr>
-                    <tr>
-                        <td>Pemrograman Web Lanjut</td>
-                        <td>{{$pwl}}</td>
-                    </tr>
-                    <tr>
-                        <td>Sistem / Teknologi Multimedia</td>
-                        <td>{{$SistemTeknologiMultimedia}}</td>
-                    </tr>
-                    <tr>
-                        <td>Visualisasi Data dan Informasi</td>
-                        <td>{{$VisualisasiDataDanInformasi}}</td>
-                    </tr>
-                    <tr>
-                        <td>Sistem Informasi Geografis</td>
-                        <td>{{$SistemInformasiGeografis}}</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="rekom">
+        <div class="teks">
+            <p> {{auth()->user()->name}}, berikut adalah matakuliah pilihan program studi yang sesuai dengan kompetensi individu kamu</p>
         </div>
+        <table id="example" class="display" style="width:50%; margin-left: 25%;">   
+            <thead>
+                <tr class="table table-dark">
+                    <th>Nama Matkul Pilihan</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data Mining</td>
+                    <td>{{$DataMining}}</td>
+                </tr>
+                <tr>
+                    <td>Kriptografi</td>
+                    <td>{{$Kriptografi}}</td>
+                </tr>
+                <tr>
+                    <td>Pervasive Computing</td>
+                    <td>{{$PervasiveComputing}}</td>
+                </tr>
+                <tr>
+                    <td>Teknologi Game</td>
+                    <td>{{$tgame}}</td>
+                </tr>
+                <tr>
+                    <td>Pengolahan Sinyal Digital</td>
+                    <td>{{$PengolahanSinyalDigital}}</td>
+                </tr>
+                <tr>
+                    <td>Information Retieval</td>
+                    <td>{{$InformationRetieval}}</td>
+                </tr>
+                <tr>
+                    <td>Teknologi Basis Data</td>
+                    <td>{{$TeknologiBasisData}}</td>
+                </tr>
+                <tr>
+                    <td>Representasi Pengetahuan dan Penalaran</td>
+                    <td>{{$RepresentasiPengetahuanDanPenalaran}}</td>
+                </tr>
+                <tr>
+                    <td>Pengolahan Citra Digital</td>
+                    <td>{{$PengolahanCitraDigital}}</td>
+                </tr>
+                <tr>
+                    <td>Pembejaran Mesin</td>
+                    <td>{{$PembelajaranMesin}}</td>
+                </tr>
+                <tr>
+                    <td>Pengolahan Bahasa Alami</td>
+                    <td>{{$PengolahanBahasaAlami}}</td>
+                </tr>
+                <tr>
+                    <td>Sistem Informasi Lanjut</td>
+                    <td>{{$sil}}</td>
+                </tr>
+                <tr>
+                    <td>Keamanan Jaringan</td>
+                    <td>{{$kj}}</td>
+                </tr>
+                <tr>
+                    <td>Jaringan Komputer Lanjut</td>
+                    <td>{{$JaringanKomputerLanjut}}</td>
+                </tr>
+                <tr>
+                    <td>Pemrograman Web Lanjut</td>
+                    <td>{{$pwl}}</td>
+                </tr>
+                <tr>
+                    <td>Sistem / Teknologi Multimedia</td>
+                    <td>{{$SistemTeknologiMultimedia}}</td>
+                </tr>
+                <tr>
+                    <td>Visualisasi Data dan Informasi</td>
+                    <td>{{$VisualisasiDataDanInformasi}}</td>
+                </tr>
+                <tr>
+                    <td>Sistem Informasi Geografis</td>
+                    <td>{{$SistemInformasiGeografis}}</td>
+                </tr>
+                <tr>
+                    <td>Pemrogrman Paralel</td>
+                    <td>{{$PemrogramanParalel}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    
     
     <div class="collapse" id="collapseExample1">
         <div class="card card-body">

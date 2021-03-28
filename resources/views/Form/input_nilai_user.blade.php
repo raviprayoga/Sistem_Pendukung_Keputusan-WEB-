@@ -48,66 +48,15 @@
                 </select>
               </td>
               {{ csrf_field() }}
-              <td><input class="konversi" type="text" name="nilai_huruf[]" id="nilai_huruf"></td>
+              <td><input class="konversi" type="text" name="nilai_huruf[]" id="nilai_huruf" autocomplete="off"></td>
               <td hidden><input class="konversi" type="text" name="nilai[]" id="nilai"></td>
               <td hidden><input class="konversi" type="text" name="bobot[]" id="bobot"></td>
             </tr>
             @endforeach 
-            
           </tbody>
         <button type="submit" class="btn_input" >Submit</button>
       </form>
     </table>
 </div>
-
-
-{{--  konversi nilai  --}}
-{{--  <script>
-        $(".konversi").keyup(function(){
-            var nilaiawal = $("#nilaiawal").val();
-            if(nilaiawal == "A" || nilaiawal == "a"){
-                var nilai = 4;
-                var bobot = 5;
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }else if(nilaiawal == "AB" || nilaiawal == "Ab" || nilaiawal == "ab"){
-                var nilai = 3.5;
-                var bobot = 4.5;
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }else if(nilaiawal == "B" || nilaiawal == "b"){
-                var nilai = 3;
-                var bobot = 4;
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }else if(nilaiawal == "BC" || nilaiawal == "Bc" || nilaiawal == "bc"){
-                var nilai = 2.5;
-                var bobot = 3.5;
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }else if(nilaiawal == "C" || nilaiawal == "c"){
-                var nilai = 2;
-                var bobot = 3;
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }else if(nilaiawal == "D" || nilaiawal == "d"){
-                var nilai = 1;
-                var bobot = 2;
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }else if(nilaiawal == "E" || nilaiawal == "e"){
-                var nilai = 0;
-                var bobot = 1;
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }else{
-                var nilai = "error";
-                var bobot = "error";
-                $("#nilai").attr("value",nilai)
-                $("#bobot").attr("value",bobot)
-            }
-        });
-</script>  --}}
-
 </body>
 @stop

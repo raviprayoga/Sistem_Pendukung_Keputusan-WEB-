@@ -41,7 +41,7 @@
       <tr>
         <td>{{$no++}}</td>
         <td>{{$item->nama_matkul_wajib}}</td>
-        <td>{{$item->pivot->nilai}}</td>
+        <td>{{$item->pivot->nilai_huruf}}</td>
         <td>{{$item->semester}}</td>
         <td><button onclick="window.location.href='/hapus_nilai/{{ $item->id }}';" class="icon_aksi2" ><i class="fas fa-trash-alt fa-2x"></i></button></td>
       </tr>
@@ -97,7 +97,7 @@
                   </select>
                 </div>
               </div>
-              <input class="modal_body" id="nilai" name="nilai" type="text" placeholder="nilai" > 
+              <input class="modal_body" id="nilai_huruf" name="nilai_huruf[]" type="text" placeholder="nilai" > 
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

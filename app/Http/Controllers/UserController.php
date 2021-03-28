@@ -110,8 +110,9 @@ class UserController extends Controller
                 $data->nilai=1;
             }else if($data->nilai_huruf == "e" || $data->nilai_huruf == "E"){
                 $data->nilai=0;
+            }else{
+                $data->nilai=0;
             }
-
             // bobot nilai
             if($data->nilai == 4){
                 $data->bobot = 5;

@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 
 
 //middleware
+Route::group(['middleware' => 'auth'], function(){
     // home
     Route::get('/home', 'UserController@getHome');   
     // metode
@@ -24,10 +25,11 @@ use App\Http\Controllers\UserController;
     // profile
     Route::get('/profile/{id}/user', 'UserController@profile');
     //keterangan
-Route::get('/{id}/keterangan', 'UserController@getKeterangan');
+    Route::get('/{id}/keterangan', 'UserController@getKeterangan');
+});
 //end midleware
 
-    Route::get('/login','UserController@login');
+    Route::get('/login','UserController@login')->name('login');
     Route::post('/loginpost','UserController@loginpost');
     Route::get('Logout','UserController@Logout')->name('logout');
     // SignUp
