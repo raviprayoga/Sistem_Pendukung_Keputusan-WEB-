@@ -418,79 +418,155 @@
             <tbody>
                 <tr>
                     <td>Data Mining</td>
-                    <td>{{$DataMining}}</td>
+                    {{--  <td>{{$DataMining}}</td>  --}}
+                    <td><?php
+                        echo round($DataMining,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Kriptografi</td>
-                    <td>{{$Kriptografi}}</td>
+                    {{--  <td>{{$Kriptografi}}</td>  --}}
+                    <td><?php
+                        echo round($Kriptografi,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Pervasive Computing</td>
-                    <td>{{$PervasiveComputing}}</td>
+                    {{--  <td>{{$PervasiveComputing}}</td>  --}}
+                    <td><?php
+                        echo round($PervasiveComputing,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Teknologi Game</td>
-                    <td>{{$tgame}}</td>
+                    {{--  <td>{{$tgame}}</td>  --}}
+                    <td><?php
+                        echo round($tgame,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Pengolahan Sinyal Digital</td>
-                    <td>{{$PengolahanSinyalDigital}}</td>
+                    {{--  <td>{{$PengolahanSinyalDigital}}</td>  --}}
+                    <td><?php
+                        echo round($PengolahanSinyalDigital,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Information Retieval</td>
-                    <td>{{$InformationRetieval}}</td>
+                    {{--  <td>{{$InformationRetieval}}</td>  --}}
+                    <td><?php
+                        echo round($InformationRetieval,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Teknologi Basis Data</td>
-                    <td>{{$TeknologiBasisData}}</td>
+                    {{--  <td>{{$TeknologiBasisData}}</td>  --}}
+                    <td><?php
+                        echo round($TeknologiBasisData,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Representasi Pengetahuan dan Penalaran</td>
-                    <td>{{$RepresentasiPengetahuanDanPenalaran}}</td>
+                    {{--  <td>{{$RepresentasiPengetahuanDanPenalaran}}</td>  --}}
+                    <td><?php
+                        echo round($RepresentasiPengetahuanDanPenalaran,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Pengolahan Citra Digital</td>
-                    <td>{{$PengolahanCitraDigital}}</td>
+                    {{--  <td>{{$PengolahanCitraDigital}}</td>  --}}
+                    <td><?php
+                        echo round($PengolahanCitraDigital,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Pembejaran Mesin</td>
-                    <td>{{$PembelajaranMesin}}</td>
+                    {{--  <td>{{$PembelajaranMesin}}</td>  --}}
+                    <td><?php
+                        echo round($PembelajaranMesin,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Pengolahan Bahasa Alami</td>
-                    <td>{{$PengolahanBahasaAlami}}</td>
+                    {{--  <td>{{$PengolahanBahasaAlami}}</td>  --}}
+                    <td><?php
+                        echo round($PengolahanBahasaAlami,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Sistem Informasi Lanjut</td>
-                    <td>{{$sil}}</td>
+                    {{--  <td>{{$sil}}</td>  --}}
+                    <td><?php
+                        echo round($sil,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Keamanan Jaringan</td>
-                    <td>{{$kj}}</td>
+                    {{--  <td>{{$kj}}</td>  --}}
+                    <td><?php
+                        echo round($kj,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Jaringan Komputer Lanjut</td>
-                    <td>{{$JaringanKomputerLanjut}}</td>
+                    {{--  <td>{{$JaringanKomputerLanjut}}</td>  --}}
+                    <td><?php
+                        echo round($JaringanKomputerLanjut,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Pemrograman Web Lanjut</td>
-                    <td>{{$pwl}}</td>
+                    {{--  <td>{{$pwl}}</td>  --}}
+                    <td><?php
+                        echo round($pwl,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Sistem / Teknologi Multimedia</td>
-                    <td>{{$SistemTeknologiMultimedia}}</td>
+                    {{--  <td>{{$SistemTeknologiMultimedia}}</td>  --}}
+                    <td><?php
+                        echo round($SistemTeknologiMultimedia,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Visualisasi Data dan Informasi</td>
-                    <td>{{$VisualisasiDataDanInformasi}}</td>
+                    {{--  <td>{{$VisualisasiDataDanInformasi}}</td>  --}}
+                    <td><?php
+                        echo round($VisualisasiDataDanInformasi,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Sistem Informasi Geografis</td>
-                    <td>{{$SistemInformasiGeografis}}</td>
+                    {{--  <td>{{$SistemInformasiGeografis}}</td>  --}}
+                    <td><?php
+                        echo round($SistemInformasiGeografis,2);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Pemrogrman Paralel</td>
-                    <td>{{$PemrogramanParalel}}</td>
+                    {{--  <td>{{$PemrogramanParalel}}</td>  --}}
+                    <td><?php
+                        echo round($PemrogramanParalel,2);
+                        ?>
+                    </td>
                 </tr>
             </tbody>
         </table>

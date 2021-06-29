@@ -16,11 +16,17 @@
 }
 .home{
     font-size: 40px;
-    padding: 15%;
+    padding: 0;
     font-family: Arial;
     font-weight: 700;
     color: #197278;
-
+}
+.home2{
+    font-size: 40px;
+    padding-top: 10%;
+    font-family: Arial;
+    font-weight: 700;
+    color: #197278;
 }
 .btn_nilai{
     background-color: #00B3CA;
@@ -100,7 +106,6 @@
         font-family: Arial;
         font-weight: 700;
         color: #197278;
-    
     }
     
     /* About */

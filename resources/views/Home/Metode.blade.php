@@ -156,11 +156,11 @@
             Tahap 5    Penghitungan Bobot Nilai
         </label>
         <p class="ket">Proses penghitungan nilai dibagi menjadi 2 kelompok dengan berdasarkan Nilai Core factor dan Secondary factor yang ada.</p>
-        <p class="jdl" style="font-style: italic">Penghitungan nilai Core Factor : </p> <img style="margin-top: 10px" src="{{asset('assets/images/rumus_CF.png')}}" alt=""> <br>
-        <p class="ket">Dimana NCi adalah jumlah nilai bobot aspek penunjang dengan kategori sub aspek merupakan Core factor (CF) </p>
-        <p class="jdl" style="font-style: italic">Penghitungan nilai Secondary Factor :</p> <img style="margin-top: 10px" src="{{asset('assets/images/rumus_SF.png')}}" alt="">
-        <p class="ket">Dimana NSi adalah jumlah nilai bobot aspek penunjang dengan kategori sub aspek merupakan Secondary factor (SF) </p>
-        <p class="jdl" style="font-style: italic">Nilai total berdasarkan Core factor dan Secondary factor</p> <img style="margin-top: 10px; margin-bottom: 90px;" src="{{asset('assets/images/rumus_total.png')}}" alt="">
+        <p class="jdl" style="font-style: italic">Penghitungan nilai Core Factor : </p> <img style="margin-top: 10px" src="{{asset('assets/images/ncf.png')}}" alt=""> <br>
+        <p class="ket">Dimana NC adalah jumlah nilai bobot aspek penunjang dengan kategori sub aspek merupakan Core factor (CF) </p>
+        <p class="jdl" style="font-style: italic">Penghitungan nilai Secondary Factor :</p> <img style="margin-top: 10px" src="{{asset('assets/images/nsf.png')}}" alt="">
+        <p class="ket">Dimana NS adalah jumlah nilai bobot aspek penunjang dengan kategori sub aspek merupakan Secondary factor (SF) </p>
+        <p class="jdl" style="font-style: italic">Nilai total berdasarkan Core factor dan Secondary factor</p> <img style="margin-top: 10px; margin-bottom: 90px;" src="{{asset('assets/images/total.png')}}" alt="">
         </div>
     </div>
 

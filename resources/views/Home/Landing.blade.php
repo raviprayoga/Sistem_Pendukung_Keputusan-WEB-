@@ -8,13 +8,24 @@
 <body>
     <img class="back_home" src="{{asset('assets/images/back_home.jpg')}}" alt="">
     <div class="label">
-        <p class="home">
+        <p class="home2">
             {{auth()->user()->name}} <br>
-            Selamat Datang di Situs Web <br>
+        </p>
+        <p class="home">
+            {{--  {{auth()->user()->name}} <br>  --}}
+            {{--  Selamat Datang di Situs Web <br>
             Sistem Pendukung Keputusan Pemilihan Matakuliah Pilihan <br>
-            Teknik informatika ITERA
+            Teknik informatika ITERA  --}}
         </p>
         <button type="button" onclick="window.location.href='/Input_Nilai/{{auth()->user()->name}}/user';" class="btn_nilai">Input Nilai</button>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/TextPlugin.min.js"></script>
+    <script>
+        gsap.registerPlugin(TextPlugin);
+        gsap.to('.home', {duration : 3, delay: 2, text: "Selamat Datang di Situs Web<br>Sistem Pendukung Keputusan Pemilihan Matakuliah Pilihan <br>Teknik informatika ITERA"});
+        gsap.from(".home2", {duration: 1.3, delay: 0.5, opacity:0 ,y: -50, ease: "power1.out"});
+    </script>
 </body>
 @stop
